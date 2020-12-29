@@ -1,0 +1,81 @@
+<div class="container container-fixed-lg mt-5">
+    <div class="row">
+      <div class="col-12 d-flex">
+        <div class="col-12 card no-border no-margin widget-loader-circle todolist-widget pending-projects-widget align-self-stretch">
+          <div class="card-header bg-white">
+            <div class="row">
+              <div class="col col-md-7 card-title"><i class="fa fa-save"></i> Cambiar moneda</div>
+            </div>
+          </div>
+          <div class="card-block flex-1">
+            <form [formGroup]="viewmodel" (ngSubmit)="change(viewmodel)">
+              <div class="row">
+                <div class="col col-md-4">
+                    <div class="form-group">
+                      <label for="dni">Monto</label>
+                      <input formControlName="amount" class="form-control" id="amount" type="number" placeholder="12.25">
+                    </div>
+                </div>
+                <div class="col col-md-4">
+                  <div class="form-group">
+                    <label for="origin">Moneda Origen</label>
+                    <select formControlName="idOriginCurrency" class="form-control" id="idOriginCurrency" name="idOriginCurrency">
+                        <option *ngFor="let currency of currencyChanges" [value]="currency.idCurrencyExchange">{{currency.currencyExnchangeName}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col col-md-4">
+                  <div class="form-group">
+                    <label for="destination">Moneda Destino</label>
+                    <select formControlName="idDestinationCurrency" class="form-control" name="idDestinationCurrency" id="idDestinationCurrency">
+                        <option *ngFor="let currency of currencyChanges" [value]="currency.idCurrencyExchange">{{currency.currencyExnchangeName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-md-12 text-center">
+                  <button [disabled]="viewmodel.invalid" type="submit" class="btn btn-sm btn-success m-2 text-white"><i class="fa fa-save"></i> Cambiar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div *ngIf="seekChange" class="card-block flex-1">
+            <div class="row">
+              <div class="col col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Moneda Origen</label>
+                  <p>{{response.originCurrency}}</p>
+                </div>
+              </div>
+              <div class="col col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Moneda Destino</label>
+                  <p>{{response.destinationCurrency}}</p>
+                </div>
+              </div>
+              <div class="col col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Tipo de cambio</label>
+                  <p>{{response.exchangeRate}}</p>
+                </div>
+              </div>
+              <div class="col col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Moneda</label>
+                  <p>{{response.amount}}</p>
+                </div>
+              </div>
+              <div class="col col-md-4">
+                <div class="form-group">
+                  <label class="font-weight-bold">Monto cambiado</label>
+                  <p>{{response.amountWihtExchangeRate}}</p>
+                </div>
+              </div>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
